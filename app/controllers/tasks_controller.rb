@@ -7,7 +7,8 @@ class TasksController < ApplicationController
   end
 
   def create
-    if @task = Task.create(task_params)
+    @task = Task.new(task_params)
+    if @task.save
       render json: @task, status: 201
     else
       render json: { errors: @task.errors }, status: 422
